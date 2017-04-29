@@ -1,7 +1,5 @@
-from class1 import cluster, points, gen
-from random import randint
-import random
-class main:
+
+#class main:
 
 #     @staticmethod
 #     def getRandomListOfXYaxises(amountOfPatients):
@@ -43,3 +41,8 @@ class main:
 #     print "centroid of cluster is: ", c.getCentrozied().getCordinate(), "SSE is: ", c.getSSE()
 
 
+print 1
+d = sum(z+f for z in [1,1,1] for f in [1])
+print d
+
+print min(s[0] for s in [(9,8),(3,4)])
