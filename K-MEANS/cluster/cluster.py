@@ -43,7 +43,7 @@ class cluster:
         self.currentCentroid = []
         for i in range(0, sizeOfDataObject):
             listOfSumDimensions.append(sum([p.get_data()[i] for p in self.listOfDataObject]))
-            self.currentCentroid.append(sum(listOfSumDimensions) / sizeOfDataObject)
+            self.currentCentroid.append(listOfSumDimensions[i] / len(self.listOfDataObject))
         return self.currentCentroid
 
     def getListOfElement(self):
@@ -65,5 +65,4 @@ class cluster:
         if cmp(self.previousCentroid, self.currentCentroid) == 0:
             # print "Equal"
             return True
-        print "UnEqual"
         return False

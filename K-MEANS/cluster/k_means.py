@@ -61,7 +61,7 @@ def runK_MEANSUntilCentroidStable(listOfClusters, listOfDataObjects):
         for dataObject in listOfDataObjects:
             assignDataObjectToNearestCluster(listOfClusters, dataObject)
 
-list = run(test.generate_data(), 20)
+list = run(test.generate_data(), 3)
 print list
 dist = 0
 print dist
