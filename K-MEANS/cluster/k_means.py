@@ -62,6 +62,7 @@ def runK_MEANSUntilCentroidStable(listOfClusters, listOfDataObjects):
             assignDataObjectToNearestCluster(listOfClusters, dataObject)
 
 list = run(test.generate_data(), 3)
-print list
-dist = 0
-print dist
+for c in list:
+    s = c.getListOfElement()[0]
+    if c.has_object(s)==1:
+        print "sucess"

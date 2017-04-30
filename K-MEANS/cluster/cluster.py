@@ -66,3 +66,8 @@ class cluster:
             # print "Equal"
             return True
         return False
+
+    def has_object(self, dataObj):
+        if dataObj in self.listOfDataObject:
+            return 1
+        return 0
