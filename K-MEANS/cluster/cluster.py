@@ -1,6 +1,5 @@
 import random
-
-import test
+from Utils import distanceOfDataObjectAndCordinets
 
 class cluster:
 
@@ -33,7 +32,7 @@ class cluster:
         sumOfPowDistance = 0.0
         self.currentCentroid = self.calculateCentroid()
         for dataObj in self.listOfDataObject:
-            sumOfPowDistance += pow(dataObj.distance(self.currentCentroid), 2)
+            sumOfPowDistance += pow(distanceOfDataObjectAndCordinets(self.currentCentroid, dataObj), 2)
         return sumOfPowDistance
 
     def calculateCentroid(self):
@@ -54,20 +53,22 @@ class cluster:
         self.previousCentroid = self.currentCentroid
 
     def getRandomCentersByDemand(self, k):
-        newRandomPoints = [None]
-        while k > 0:
-            k -= 1
-            newRandomPoints.append(random.choice(self.listOfDataObject))
-        return newRandomPoints
+        maximumAmount = len(self.listOfDataObject)
+        if k <= maximumAmount:
+            return random.sample(self.listOfDataObject, k)
+        else:
+            return random.sample(self.listOfDataObject, maximumAmount)
 
     def checkEquivilantCentroid(self):
         self.calculateCentroid()
         if cmp(self.previousCentroid, self.currentCentroid) == 0:
-            # print "Equal"
+            print "Equal"
             return True
+        print "UnEqual"
         return False
 
     def has_object(self, dataObj):
         if dataObj in self.listOfDataObject:
             return 1
         return 0
+

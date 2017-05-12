@@ -28,7 +28,7 @@ def generate_data():
 
     :return: will return a list of data objects
     """
-    how_much_data = random.randint(10,1000)
+    how_much_data = random.randint(10,100)
     return [data_object(n) for i in range(how_much_data)]
 
 if __name__ == "__main__":

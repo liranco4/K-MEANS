@@ -1,8 +1,7 @@
 import random
 import test
 import cluster
-import math
-
+from Utils import distanceOfDataObjectAndCordinets
 
 def run(listOfDataObjects, numberOfClusters):
     listOfClusters = createMultipleClusterInList(numberOfClusters)
@@ -19,16 +18,6 @@ def createMultipleClusterInList(numberOfClusters):
     return listOfClusters
 
 
-def distanceOfDataObjectAndCordinets(listOfCordintes, dataObject):
-    try:
-        assert len(listOfCordintes) == len(dataObject.get_data()),"length of listOfCordintes: {} doesn't equal to length of dataObject: {}".format(len(listOfCordintes),len(dataObject.get_data()))
-    except Exception:
-        print "error"
-    dist = 0
-    for i, j in zip(listOfCordintes, dataObject.get_data()):
-        dist += math.sqrt((pow((i - j), 2)))
-    return dist
-
 # assignDataObjectToNearestCluster: True when succeeded otherwise False
 def assignDataObjectToNearestCluster(listOfClusters, dataObject):
     listOftupleClustersAndDistance = []
@@ -44,11 +33,12 @@ def assignDataObjectToNearestCluster(listOfClusters, dataObject):
             return True
     return False
 
+
 # if one of the cluster centroid was changed: return True, otherwise return False
 def checkIfCentroidWasChangedInAllClusters(listOfClusters):
     centroidWasChanged = False
     for clusterObj in listOfClusters:
-        if clusterObj.checkEquivilantCentroid() == False:
+        if not clusterObj.checkEquivilantCentroid():
             centroidWasChanged = True
     return centroidWasChanged
 
@@ -61,8 +51,15 @@ def runK_MEANSUntilCentroidStable(listOfClusters, listOfDataObjects):
         for dataObject in listOfDataObjects:
             assignDataObjectToNearestCluster(listOfClusters, dataObject)
 
+
+
 list = run(test.generate_data(), 3)
 for c in list:
+    print c.getSSE()
+    list1 = c.getRandomCentersByDemand(3)
+    for v in list1:
+        print v.get_data()
     s = c.getListOfElement()[0]
-    if c.has_object(s)==1:
+    if c.has_object(s) == 1:
         print "sucess"
+
